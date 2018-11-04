@@ -10,3 +10,7 @@ class EventoForm(forms.ModelForm):
             self.fields["personas"].widget = forms.widgets.CheckboxSelectMultiple()
             self.fields["personas"].help_text = "Ingrese los actores que asistiran al evento"
             self.fields["personas"].queryset = Persona.objects.all()
+class PersonaForm(forms.ModelForm):
+    class Meta:
+        model = Persona
+        fields = ('nombre', 'telefono', 'direccion','correo','fecha_nacimiento',)

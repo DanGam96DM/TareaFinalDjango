@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from django.contrib import messages
-from .forms import EventoForm, PersonaForm
-from eventos.models import Evento, Inscripcion, Persona
+from .forms import EventoForm, PersonaForm, TipoForm
+from eventos.models import Evento, Inscripcion, Persona, TipoEvento
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
@@ -79,3 +79,34 @@ def persona_eliminar(request, pk):
     persona = get_object_or_404(Persona, pk=pk)
     persona.delete()
     return redirect('lista_personas')
+def lista_tipo(request):
+    tipos = TipoEvento.objects.order_by('id')
+    return render(request, 'tipos/tipo_list.html', {'tipos':tipos})
+def tipo_nuevo(request):
+    if request.method == "POST":
+        form = TipoForm(request.POST)
+        if form.is_valid():
+            tipo = form.save(commit=False)
+            tipo.save()
+            return redirect('lista_tipo')
+    else:
+        form = TipoForm()
+    return render(request, 'tipos/tipo_nuevo.html', {'form': form})
+def tipo_detalle(request, pk):
+    tipo = get_object_or_404(TipoEvento, pk=pk)
+    return render(request, 'tipos/tipo_detalle.html', {'tipo': tipo})
+def tipo_editar(request, pk):
+    tipo = get_object_or_404(TipoEvento, pk=pk)
+    if request.method == "POST":
+        form = TipoForm(request.POST, instance=tipo)
+        if form.is_valid():
+            tipo = form.save(commit=False)
+            tipo.save()
+            return redirect('lista_tipo')
+    else:
+        form = TipoForm(instance=tipo)
+    return render(request, 'tipos/tipo_editar.html', {'form': form})
+def tipo_eliminar(request, pk):
+    tipo = get_object_or_404(TipoEvento, pk=pk)
+    tipo.delete()
+    return redirect('lista_tipo')

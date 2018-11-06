@@ -21,9 +21,9 @@
           <th>{{persona.correo}}</th>
           <th>{{persona.fecha_nacimiento}}</th>
           <th>
-            <a href="{% url 'persona_detalle' pk=persona.pk %}" class="bt btn-warning"><span class="glyphicon glyphicon-info-sign"></span></a>
-            <a href="{% url 'persona_editar' pk=persona.pk %}" class="bt btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a href="{% url 'persona_eliminar' pk=persona.pk %}" class="bt btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+            <a href="{% url 'persona_detalle' pk=persona.pk %}" class="bt btn-warning"><span class="glyphicon glyphicon-info-sign"></span>Detalle</a>
+            <a href="{% url 'persona_editar' pk=persona.pk %}" class="bt btn-info"><span class="glyphicon glyphicon-pencil"></span>Editar</a>
+            <a href="{% url 'persona_eliminar' pk=persona.pk %}" class="bt btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
           </th>
         </tr>
         {% endfor %}

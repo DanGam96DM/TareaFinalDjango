@@ -1,5 +1,5 @@
 from django import forms
-from .models import Persona, Evento
+from .models import Persona, Evento, TipoEvento
 class EventoForm(forms.ModelForm):
 #todos los campos de Evento
     class Meta:
@@ -14,3 +14,7 @@ class PersonaForm(forms.ModelForm):
     class Meta:
         model = Persona
         fields = ('nombre', 'telefono', 'direccion','correo','fecha_nacimiento',)
+class TipoForm(forms.ModelForm):
+    class Meta:
+        model=TipoEvento
+        fields=('nombre', 'descripcion',)

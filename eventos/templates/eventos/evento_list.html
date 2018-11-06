@@ -17,9 +17,9 @@
           <th>{{evento.descripcion}}</th>
           <th>{{evento.fecha}}</th>
           <th>
-            <a href="{% url 'evento_detalle' pk=evento.pk %}" class="bt btn-warning"><span class="glyphicon glyphicon-info-sign"></span></a>
-            <a href="{% url 'evento_editar' pk=evento.pk %}" class="bt btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a href="{% url 'evento_eliminar' pk=evento.pk %}" class="bt btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+            <a href="{% url 'evento_detalle' pk=evento.pk %}" class="bt btn-warning"><span class="glyphicon glyphicon-info-sign"></span>Detalle</a>
+            <a href="{% url 'evento_editar' pk=evento.pk %}" class="bt btn-info"><span class="glyphicon glyphicon-pencil">Editar</span></a>
+            <a href="{% url 'evento_eliminar' pk=evento.pk %}" class="bt btn-danger"><span class="glyphicon glyphicon-trash"></span>Eliminar</a>
           </th>
         </tr>
         {% endfor %}

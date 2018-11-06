@@ -11,4 +11,9 @@ urlpatterns = [
     url(r'^persona/(?P<pk>[0-9]+)/$', views.persona_detalle, name='persona_detalle'),
     url(r'^persona/(?P<pk>[0-9]+)/edit/$', views.persona_editar, name='persona_editar'),
     url(r'^persona/(?P<pk>\d+)/remove/$', views.persona_eliminar, name='persona_eliminar'),
+    url(r'^tipoEvento/$', views.lista_tipo, name ='lista_tipo'),
+    url(r'^tipoEvento/nuevo/$', views.tipo_nuevo, name='tipo_nuevo'),
+    url(r'^tipoEvento/(?P<pk>[0-9]+)/$', views.tipo_detalle, name='tipo_detalle'),
+    url(r'^tipoEvento/(?P<pk>[0-9]+)/edit/$', views.tipo_editar, name='tipo_editar'),
+    url(r'^tipoEvento/(?P<pk>\d+)/remove/$', views.tipo_eliminar, name='tipo_eliminar'),
 ]

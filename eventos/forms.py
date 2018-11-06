@@ -4,7 +4,7 @@ class EventoForm(forms.ModelForm):
 #todos los campos de Evento
     class Meta:
         model = Evento
-        fields = ('nombre', 'descripcion', 'fecha', 'personas')
+        fields = ('nombre', 'descripcion', 'fecha', 'personas', 'tipo')
         def __init__ (self, *args, **kwargs):
             super(EventoForm, self).__init__(*args, **kwargs)
             self.fields["personas"].widget = forms.widgets.CheckboxSelectMultiple()

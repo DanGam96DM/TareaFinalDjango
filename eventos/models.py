@@ -11,12 +11,14 @@ class Persona(models.Model):
 class TipoEvento(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.CharField(max_length=100)
-    def __str__(sel):
+    def __str__(self):
         return self.nombre
 class Evento(models.Model):
     nombre = models.CharField(max_length=60)
     descripcion = models.CharField(max_length=200)
     fecha = models.DateField()
+    tipo = models.ForeignKey(TipoEvento, on_delete=models.CASCADE,
+                            blank=True, null=True)
     personas   = models.ManyToManyField(Persona, through='Inscripcion')
     def __str__(self):
         return self.nombre

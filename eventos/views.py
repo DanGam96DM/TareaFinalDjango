@@ -35,7 +35,7 @@ def evento_nuevo(request):
     if request.method == "POST":
         formulario = EventoForm(request.POST)
         if formulario.is_valid():
-            evento = Evento.objects.create(nombre=formulario.cleaned_data['nombre'], descripcion=formulario.cleaned_data['descripcion'], fecha=formulario.cleaned_data['fecha'])
+            evento = Evento.objects.create(nombre=formulario.cleaned_data['nombre'], descripcion=formulario.cleaned_data['descripcion'], fecha=formulario.cleaned_data['fecha'], tipo=formulario.cleaned_data['tipo'])
             for persona_id in request.POST.getlist('personas'):
                 inscripcion = Inscripcion(persona_id=persona_id, evento_id = evento.id)
                 inscripcion.save()
@@ -79,9 +79,11 @@ def persona_eliminar(request, pk):
     persona = get_object_or_404(Persona, pk=pk)
     persona.delete()
     return redirect('lista_personas')
+@login_required
 def lista_tipo(request):
     tipos = TipoEvento.objects.order_by('id')
     return render(request, 'tipos/tipo_list.html', {'tipos':tipos})
+@login_required
 def tipo_nuevo(request):
     if request.method == "POST":
         form = TipoForm(request.POST)
@@ -92,9 +94,11 @@ def tipo_nuevo(request):
     else:
         form = TipoForm()
     return render(request, 'tipos/tipo_nuevo.html', {'form': form})
+@login_required
 def tipo_detalle(request, pk):
     tipo = get_object_or_404(TipoEvento, pk=pk)
     return render(request, 'tipos/tipo_detalle.html', {'tipo': tipo})
+@login_required
 def tipo_editar(request, pk):
     tipo = get_object_or_404(TipoEvento, pk=pk)
     if request.method == "POST":
@@ -106,6 +110,7 @@ def tipo_editar(request, pk):
     else:
         form = TipoForm(instance=tipo)
     return render(request, 'tipos/tipo_editar.html', {'form': form})
+@login_required
 def tipo_eliminar(request, pk):
     tipo = get_object_or_404(TipoEvento, pk=pk)
     tipo.delete()
